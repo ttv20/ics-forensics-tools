@@ -56,7 +56,7 @@ def parse_arguments():
         parser.print_usage()
         sys.exit(1)
 
-    return parser.parse_args()
+    return parser.parse_args() 
 
 
 def validate_arguments(args):
