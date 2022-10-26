@@ -81,6 +81,11 @@ Depending on the model you choose to investigate, the data presented per model
         <img src='https://github.com/microsoft/ics-forensics-tools/blob/main/assets/img/ob_usage.png' img align='center'/>
     <br/>
 <br/>
+- Online <-> Offline Block Comparison
+    <br/><br/>
+        <img src='https://github.com/microsoft/ics-forensics-tools/blob/main/assets/img/offline_online_compare.png' img align='center'/>
+    <br/>
+<br/>
 
 
 
