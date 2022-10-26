@@ -59,32 +59,34 @@ Depending on the model you choose to investigate, the data presented per model
 - Upload project from PLC and parsing status
 - Author block names and uniqueness -
     <br/>   
-    <img src='https://github.com/microsoft/ics-forensics-tools/blob/main/assets/img/author_block_metadata.png' img align='center' width='377' height='100'/>
+    <img src='https://github.com/microsoft/ics-forensics-tools/blob/main/assets/img/author_block_metadata.png' img align='center'/>
     <br/><br/>
 - Timestamp Outliers Anomalies
     <br/>    
-    <img src='https://github.com/microsoft/ics-forensics-tools/blob/main/assets/img/time_outliers.png' img align='center' width='377' height='100'/>
+    <img src='https://github.com/microsoft/ics-forensics-tools/blob/main/assets/img/time_outliers.png' img align='center'/>
     <br/><br/>
   
 - Network Logic
     <br/>    
-    <img src='https://github.com/microsoft/ics-forensics-tools/blob/main/assets/img/section52.png' img align='center' width='377' height='100'/>
+    <img src='https://github.com/microsoft/ics-forensics-tools/blob/main/assets/img/communication.png' img align='center'/>
     <br/><br/>
   
 - Call graph - program connection base execution graph
     <br/>    
-    <img src='https://github.com/microsoft/ics-forensics-tools/blob/main/assets/img/graph_exmp.png' img align='center' width='377' height='100'/>
+    <img src='https://github.com/microsoft/ics-forensics-tools/blob/main/assets/img/graph_exmp.png' img align='center' />
     <br/>
 <br/>
 - OB metadata
     <br/><br/>
-        <img src='https://github.com/microsoft/ics-forensics-tools/blob/main/assets/img/ob_usage.png' img align='center' width='377' height='100'/>
+        <img src='https://github.com/microsoft/ics-forensics-tools/blob/main/assets/img/ob_usage.png' img align='center'/>
     <br/>
 <br/>
-- Block Comparison - offline vs online
-<br/><br/>
-    <img src='https://github.com/microsoft/ics-forensics-tools/blob/main/assets/img/section52.png' img align='center' width='377' height='100'/>
+- Online <-> Offline Block Comparison
+    <br/><br/>
+        <img src='https://github.com/microsoft/ics-forensics-tools/blob/main/assets/img/offline_online_compare.png' img align='center'/>
+    <br/>
 <br/>
+
 
 
 
