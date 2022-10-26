@@ -87,7 +87,7 @@ Depending on the model you choose to investigate, the data presented per model
     <br/>
 <br/>
 
-##Resources and Technical data & solution:
+## Resources and Technical data & solution:
 [Microsoft Defender for IoT](https://azure.microsoft.com/en-us/services/iot-defender/#overview) is an agentless network-layer security solution that allows
 organizations to continuously monitor and discover assets, detect threats, and manage vulnerabilities in their IoT/OT
 and Industrial Control Systems (ICS) devices, on-premises and in Azure-connected environments.
