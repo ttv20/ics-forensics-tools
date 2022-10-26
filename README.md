@@ -11,7 +11,7 @@ during incident response or manual check. Microsoft Section52 ICS Forensics Tool
 open source, which allows investigators to verify the actions of
 the tool or customize it to specific needs, currently support Siemens S7 via Snap7.
 
-## SUPPORTED LOGICS
+## SUPPORTED SCENARIOS
 - OB usage
 - Block author
 - Offline - Online comparison
