@@ -59,31 +59,31 @@ Depending on the model you choose to investigate, the data presented per model
 - Upload project from PLC and parsing status
 - Author block names and uniqueness -
     <br/>   
-    <img src='https://github.com/microsoft/ics-forensics-tools/blob/main/assets/img/author_block_metadata.png' img align='center'/>
+    <img src='https://github.com/microsoft/ics-forensics-tools/blob/main/assets/img/author_block_metadata.png' img align='center' width='370' height='150'/>
     <br/><br/>
 - Timestamp Outliers Anomalies
     <br/>    
-    <img src='https://github.com/microsoft/ics-forensics-tools/blob/main/assets/img/time_outliers.png' img align='center'/>
+    <img src='https://github.com/microsoft/ics-forensics-tools/blob/main/assets/img/time_outliers.png' img align='center' width='370' height='150'/>
     <br/><br/>
   
 - Network Logic
     <br/>    
-    <img src='https://github.com/microsoft/ics-forensics-tools/blob/main/assets/img/communication.png' img align='center'/>
+    <img src='https://github.com/microsoft/ics-forensics-tools/blob/main/assets/img/communication.png' img align='center' width='370' height='150'/>
     <br/><br/>
   
 - Call graph - program connection base execution graph
     <br/>    
-    <img src='https://github.com/microsoft/ics-forensics-tools/blob/main/assets/img/graph_exmp.png' img align='center' />
+    <img src='https://github.com/microsoft/ics-forensics-tools/blob/main/assets/img/graph_exmp.png' img align='center' width='370' height='150'/>
     <br/>
 <br/>
 - OB metadata
     <br/><br/>
-        <img src='https://github.com/microsoft/ics-forensics-tools/blob/main/assets/img/ob_usage.png' img align='center'/>
+        <img src='https://github.com/microsoft/ics-forensics-tools/blob/main/assets/img/ob_usage.png' img align='center' width='370' height='150'/>
     <br/>
 <br/>
 - Online <-> Offline Block Comparison
     <br/><br/>
-        <img src='https://github.com/microsoft/ics-forensics-tools/blob/main/assets/img/offline_online_compare.png' img align='center'/>
+        <img src='https://github.com/microsoft/ics-forensics-tools/blob/main/assets/img/offline_online_compare.png' img align='center' width='370' height='250'/>
     <br/>
 <br/>
 
