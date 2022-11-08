@@ -24,6 +24,9 @@ def get_called_blocks_edges(block_id, called_blocks):
 
 def call_tree(df, ip_addresses, export_dpath):
     logger.info('create call tree graph')
+    if 'used_block' not in df.columns:
+        return
+
     for ip in ip_addresses:
         df_ip = deepcopy(df.loc[df['ip'] == ip])
         df_ip['called_blocks_edges'] = df_ip.apply(
@@ -95,8 +98,12 @@ def ob_roles_check(df, ip_addresses):
     parse_ob_roles_results(df, ip_addresses)
 
 
-def parse_network_results(df, ip_addresses):
+def parse_network_results(df, ip_addresses, indicators_exist=True):
     result_msg = ''
+
+    if not indicators_exist:
+        logger.info('No network usage was found.')
+        return
 
     for ip in ip_addresses:
         ip_anomaly_found = False
@@ -160,16 +167,20 @@ def address_check(tcon_remote_address):
 
 def network_check(df, ip_addresses):
     logger.debug('executing block network check')
-    conn_params_df = df.loc[df['db_ext_header_tcon_params_block_length'].isnull() == False]
+    if 'db_ext_header_tcon_params_block_length' in df.columns:
+        conn_params_df = df.loc[df['db_ext_header_tcon_params_block_length'].isnull() == False]
 
-    df.loc[df.index.isin(conn_params_df.index), 'conn_remote_address'] = df[
-        'db_ext_header_tcon_params_rem_staddr'].apply(lambda tcon_params: address_check(tcon_params))
+        df.loc[df.index.isin(conn_params_df.index), 'conn_remote_address'] = df[
+            'db_ext_header_tcon_params_rem_staddr'].apply(lambda tcon_params: address_check(tcon_params))
 
-    df.loc[
-        (df['used_block'].isnull() == False) & (df['used_block'].str.len() > 0), 'uses_communication_block'] = df.apply(
-        lambda row: is_use_communication_blocks(df, row['ip'], row['used_block']), axis=1)
+        df.loc[(df['used_block'].isnull() == False) & (
+                    df['used_block'].str.len() > 0), 'uses_communication_block'] = df.apply(
+            lambda row: is_use_communication_blocks(df, row['ip'], row['used_block']), axis=1)
 
-    parse_network_results(df, ip_addresses)
+        parse_network_results(df, ip_addresses)
+
+    else:
+        parse_network_results(df, ip_addresses, indicators_exist=False)
 
 
 def process_dates_results(df, ip_addresses):
@@ -299,8 +310,9 @@ def author_check(df, ip_addresses):
 
 
 def store_df(df, fpath):
-    df.drop(['body', 'data', 'interface', 'seg', 'local_data', 'body_parse'], axis=1, inplace=True)
+    df.drop(['body', 'data', 'interface', 'seg', 'local_data', 'body_parse'], axis=1, errors='ignore', inplace=True)
     df.to_csv(fpath, escapechar='\\')
+    logger.info('{} file was created'.format(os.path.basename(fpath)))
 
 
 def start(parsed_devices_data, logic_files_directory, logic_all=False, logic_author=False, logic_dates=False,
