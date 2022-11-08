@@ -43,7 +43,6 @@ def call_tree(df, ip_addresses, export_dpath):
         plt.savefig(os.path.join(export_ip_dpath, 'call_tree_{}.png'.format(ip_fmt)), dpi=300, bbox_inches='tight')
 
 
-
 def map_module_to_cpu(cpu_modules_mapping, module):
     module = module.replace(' ', '')
     if module in cpu_modules_mapping['300'].keys():
@@ -220,7 +219,7 @@ def dates_check(df, ip_addresses):
             datetime.datetime.fromisoformat(row['last_modified']) - datetime.datetime.fromisoformat(
         row['last_interface_change'])), axis=1)
 
-    for ip in tqdm(ip_addresses, desc='dates check'):
+    for ip in ip_addresses:
         min_last_modified = datetime.datetime.fromisoformat(min(df.loc[df['ip'] == ip]['last_modified']))
         max_last_modified = datetime.datetime.fromisoformat(max(df.loc[df['ip'] == ip]['last_modified']))
 
@@ -307,7 +306,6 @@ def store_df(df, fpath):
 def start(parsed_devices_data, logic_files_directory, logic_all=False, logic_author=False, logic_dates=False,
           logic_network=False, logic_ob=False):
     logger.info('start executing block logics')
-    # dbscan_f = True
     df = pd.DataFrame(parsed_devices_data)
     if df.empty:
         logger.debug('no blocks exist for logic check')
@@ -325,8 +323,6 @@ def start(parsed_devices_data, logic_files_directory, logic_all=False, logic_aut
     if logic_all or logic_ob:
         ob_roles_check(df, ip_addresses)
 
-
-
-    call_tree(df, ip_addresses,logic_files_directory)
+    call_tree(df, ip_addresses, logic_files_directory)
 
     store_df(df, os.path.join(logic_files_directory, 'blocks_metadata.csv'))

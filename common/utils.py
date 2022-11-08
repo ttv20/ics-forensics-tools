@@ -8,13 +8,14 @@ import pandas as pd
 from loguru import logger
 from tqdm import tqdm
 
+
 def to_str(data):
     return data.strip("\x00").strip(" ")
 
+
 def get_ip_addresses(fpath):
     if not os.path.exists(fpath):
-        raise Exception(
-            'IP addresses file: {} does not exist. Usage: ./main.py <IP_addresses_file_to_scan>'.format(fpath))
+        raise Exception(f'IP addresses file: {fpath} does not exist. Usage: ./main.py <IP_addresses_file_to_scan>')
     with open(r'./ips_to_scan.txt', 'r') as f:
         return f.read().splitlines()
 
@@ -55,8 +56,8 @@ def ensure_directory_exists(directory_path, override=True):
 def get_parsed_devices_data(raw_files_directory):
     parsed_data = []
 
-    for fname in os.listdir(raw_files_directory):
-        logger.info(f'loading file:{fname}')
+    for fname in tqdm(os.listdir(raw_files_directory), desc='get_parsed_devices_data - iterating raw files'):
+        logger.info(f'loading file: {fname}')
         fpath = os.path.join(raw_files_directory, fname)
 
         with open(fpath, 'r') as f:
@@ -69,14 +70,15 @@ def get_parsed_devices_data(raw_files_directory):
         if device_output['identity']:
             df = pd.json_normalize(device_output['identity'], sep='_')
             row_prefix.update(df.to_dict(orient='records')[0])
-        logger.info(f'load blocks:{fname}')
-        for block in tqdm(device_output['blocks']):
+        logger.info(f'loading blocks: {fname}')
+        for block in device_output['blocks']:
             df = pd.json_normalize(block, sep='_')
             block_row = df.to_dict(orient='records')[0]
             block_row.update(row_prefix)
             parsed_data.append(block_row)
 
     return parsed_data
+
 
 def validate_network_subnet(subnet):
     res = re.search(r"^\d{1,3}\.\d{1,3}\.\d{1,3}\.$", subnet)
@@ -89,6 +91,7 @@ def validate_port_number(num):
     if type(num) == int and 1 <= 65535:
         return True
     return False
+
 
 def twosComplement_hex(hexval):
     bits = 16

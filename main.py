@@ -21,7 +21,6 @@ LOG_FPATH = os.path.join(OUT_DIR, 'debug.log')
 
 def parse_arguments():
     parser = argparse.ArgumentParser(description='Ladder Logic Forensic Tool by Section52, Microsoft')
-    parser.add_argument('-so', '--stdout_output', help='Print output to stdout', action='store_true', required=False)
     parser.add_argument('-fo', '--file_output', help='Store output in file', action='store_true', required=False)
     parser.add_argument('-v', '--verbose', help='Verbose logging', action='store_true', required=False)
 
@@ -30,8 +29,8 @@ def parse_arguments():
                        required=False)
     group.add_argument('-sc', '--scan', help='Scan for Siemens S7 PLCs in network segment (x.y.z.)', required=False)
 
-    parser.add_argument('-ov', '--override_output_dirs', help='Override output directories',
-                        action='store_true', required=False)
+    parser.add_argument('-ov', '--override_output_dirs', help='Override output directories', action='store_true',
+                        required=False)
 
     parser.add_argument('-pn', '--port_number', help='Port number for connecting or scanning', required=False)
 
@@ -56,7 +55,7 @@ def parse_arguments():
         parser.print_usage()
         sys.exit(1)
 
-    return parser.parse_args() 
+    return parser.parse_args()
 
 
 def validate_arguments(args):
@@ -84,28 +83,23 @@ def validate_arguments(args):
             sys.exit(0)
 
 
-def set_logging_config(to_stdout, to_file, log_fpath=None, verbose=False):
-    logger.remove()
-    logger.add(tqdm.write)
+def set_logging_config(to_file, verbose=False, log_fpath=None):
     level = 'INFO'
     if verbose:
         level = 'DEBUG'
 
+    logger.remove()
+    logger.add(lambda msg: tqdm.write(msg, end=""), colorize=True, level=level)
+
     if to_file:
         logger.add(log_fpath, level=level)
-    else:
-        logger.add(sys.stdout, level=level)
-
-    if to_stdout:
-        logger.add(sys.stdout, level=level)
 
 
 def initiate_program(args):
     for dpath in [RAW_FILES_DIR, OUT_FILES_DIR, LOGIC_FILES_DIR, BLOCK_COMP_DIR]:
         utils.ensure_directory_exists(dpath, override=args.override_output_dirs)
 
-    set_logging_config(to_stdout=args.stdout_output, to_file=args.file_output, log_fpath=LOG_FPATH,
-                       verbose=args.verbose)
+    set_logging_config(to_file=args.file_output, verbose=args.verbose, log_fpath=LOG_FPATH)
 
 
 def main():
