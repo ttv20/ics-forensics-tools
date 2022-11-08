@@ -30,7 +30,6 @@ This tool requires Python 3.8 or later.
  **args**  | **Description**							                                      | **Must / Optional**
 -----------| ------------------------------------------------------------------------------| -------------------
 `-h`, `--help`							|show this help message and exit						| ----
-`-so`, `--stdout_output`				|Print output to stdout									|optional
 `-fo`, `--file_output`					|Store output in file									|optional
 `-v`, `--verbose`						|Verbose logging											| optional
 `-if`, `--ip_addresses_file`			|IP addresses file to scan								|optional
