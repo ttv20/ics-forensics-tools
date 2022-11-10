@@ -19,7 +19,7 @@ warnings.simplefilter(action='ignore', category=FutureWarning)
 def get_called_blocks_edges(block_id, called_blocks):
     if (not called_blocks) or (called_blocks != called_blocks):  # nan
         return []
-    return [(block_id, called_block) for called_block in called_blocks]
+    return [(block_id, called_block.replace(' ', '_')) for called_block in called_blocks]
 
 
 def call_tree(df, ip_addresses, export_dpath):
